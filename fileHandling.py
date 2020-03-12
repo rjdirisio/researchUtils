@@ -24,34 +24,36 @@ class fileHandler:
         return xx.reshape(int(nLines/nAts),nAts,3)
 
     @classmethod
-    def writeXYZ(cls,array, fname,atmStrings,cmt=None):
+    def writeXYZ(cls,xx, fname,atmStrings,cmt=None):
         """
         Writes a numpy array of x,y,z coordinates to a .xyz file
         :param fname:name of xyz file
         :type str
-        :param array:numpy array, either mx3 or nxmx3, where n = number of geometries and m = number of atoms
+        :param xx:numpy array, either mx3 or nxmx3, where n = number of geometries and m = number of atoms
         :param atmStrings: list of strings that correspond to the atom type e.g. ["H","H","O"]
         :return: np.ndarray        
         """
-        if len(array.shape) == 2:
-            array = np.expand_dims(array,axis=0)
+        if len(xx.shape) == 2:
+            array = np.expand_dims(xx,axis=0)
         if cmt is None:
-            cmt = np.repeat("",len(array))
+            cmt = np.repeat("",len(xx))
         else:
             if len(cmt) == 1:
-                cmt = np.repeat(cmt,len(array))
+                cmt = np.repeat(cmt,len(xx))
             else:
                 raise ValueError('Comment length does not match array length')
         fl = open(fname,'w')
-        nAtoms = len(np.shape(array)[1])
-        for mNum, molecule in enumerate(array):
-            fl.write(f"{len(nAtoms)}\n")
+        nAtoms = np.shape(xx)[1]
+        for mNum, molecule in enumerate(xx):
+            fl.write(f"{nAtoms}\n")
             fl.write(f"{cmt[mNum]}\n")
             for atmN,atm in enumerate(molecule):
-                fl.write(f"{atmStrings[atmN]} {atm[0]},{atm[1]},{atm[2]}\n")
+                fl.write(f"{atmStrings[atmN]} {atm[0]:.12f} {atm[1]:.12f} {atm[2]:.12f}\n")
             fl.write("\n")
         fl.close()
         
 if __name__ == '__main__':
     fll = 'test.xyz'
-    xx = fileHandler.extractXYZ(fll)
+    atmList = ["O","O","O","H","H","H","H","H","H","H"]
+    xx = fileHandler.extractXYZ(fll,atmList)
+    fileHandler.writeXYZ(xx,'myExit.xyz',atmList)
