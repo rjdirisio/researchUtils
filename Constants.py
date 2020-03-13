@@ -1,5 +1,3 @@
-__all__ = ["Constants"]
-
 class Constants:
     atomic_units = {
         "wavenumbers" : 4.55634e-6,
