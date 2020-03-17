@@ -1,7 +1,7 @@
-"""This class is supposed to handle xyz <-> npy conversion, like a manual version of openBabel. """
 __all__ = ['fileHandler']
 import numpy as np
 class fileHandler:
+    """This short class handles xyz <-> npy conversion, like a manual version of openBabel. """
     @classmethod
     def extractXYZ(cls,fname,atmStr):
         import pandas as pd

@@ -1,4 +1,5 @@
 class Constants:
+    """Thanks Mark for this silly little class."""
     atomic_units = {
         "wavenumbers" : 4.55634e-6,
         "angstroms" : 1/0.529177,
