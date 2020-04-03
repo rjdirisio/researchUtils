@@ -48,7 +48,7 @@ class fileHandler:
             fl.write(f"{nAtoms}\n")
             fl.write(f"{cmt[mNum]}\n")
             for atmN,atm in enumerate(molecule):
-                fl.write(f"{atmStrings[atmN]} {atm[0]:.12f} {atm[1]:.12f} {atm[2]:.12f}\n")
+                fl.write(f"{atmStrings[atmN]} {atm[0]:.14f} {atm[1]:.14f} {atm[2]:.14f}\n")
             fl.write("\n")
         fl.close()
         
