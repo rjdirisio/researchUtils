@@ -10,6 +10,7 @@ class Constants:
         "H" : ( 1.00782503223, "amu"),
         "O" : (15.99491561957, "amu"),
         "D" : (2.0141017778,"amu")
+        "C" : (12.000000,"amu")
     }
     @classmethod
     def convert(cls, val, unit, to_AU = True):
